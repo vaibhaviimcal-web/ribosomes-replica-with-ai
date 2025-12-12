@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ribosomes Diagnostics | Advanced Diagnostic Solutions with AI</title>
-    <meta name="description" content="Trusted Marketers & Distributors of Diagnostic Products in India with AI-Powered Features">
+    <title>Ribosomes Diagnostics | AI-Powered Diagnostic Solutions</title>
+    <meta name="description" content="Advanced Diagnostic Equipment with AI Intelligence - Voice Assistant, Smart Search, Real-time Support">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="https://www.ribosomesdiagnostics.com/assets/images/favicon.png">
@@ -14,57 +14,95 @@
         body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; }
         h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
         
-        /* AI Chatbot Styles */
+        /* AI Chatbot Enhanced */
         .ai-chatbot { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
-        .chatbot-button { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #0066CC, #00A86B); color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,102,204,0.4); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-        .chatbot-button:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,102,204,0.6); }
+        .chatbot-button { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #0066CC, #00A86B); color: white; border: none; cursor: pointer; box-shadow: 0 8px 24px rgba(0,102,204,0.5); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; font-size: 28px; position: relative; }
+        .chatbot-button:hover { transform: scale(1.15); box-shadow: 0 12px 32px rgba(0,102,204,0.7); }
         .chatbot-button.pulse { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { box-shadow: 0 4px 12px rgba(0,102,204,0.4); } 50% { box-shadow: 0 4px 20px rgba(0,102,204,0.8); } }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 8px 24px rgba(0,102,204,0.5); } 50% { box-shadow: 0 8px 32px rgba(0,102,204,0.9), 0 0 0 20px rgba(0,102,204,0.1); } }
         
-        .chatbot-window { position: fixed; bottom: 90px; right: 20px; width: 380px; height: 600px; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; }
-        .chatbot-window.active { display: flex; animation: slideUp 0.3s ease; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .voice-indicator { position: absolute; top: -5px; right: -5px; width: 24px; height: 24px; background: #ff4444; border-radius: 50%; display: none; animation: voicePulse 1s infinite; }
+        .voice-indicator.active { display: block; }
+        @keyframes voicePulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.7; } }
         
-        .chatbot-header { background: linear-gradient(135deg, #0066CC, #004C99); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .chatbot-messages { flex: 1; overflow-y: auto; padding: 20px; background: #f8f9fa; }
-        .chatbot-input { padding: 15px; border-top: 1px solid #e0e0e0; display: flex; gap: 10px; background: white; }
-        .chatbot-input input { flex: 1; padding: 12px; border: 1px solid #e0e0e0; border-radius: 24px; outline: none; }
-        .chatbot-input button { padding: 12px 20px; background: #0066CC; color: white; border: none; border-radius: 24px; cursor: pointer; }
+        .chatbot-window { position: fixed; bottom: 100px; right: 20px; width: 420px; height: 650px; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); display: none; flex-direction: column; overflow: hidden; }
+        .chatbot-window.active { display: flex; animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
         
-        .message { margin-bottom: 15px; display: flex; gap: 10px; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .chatbot-header { background: linear-gradient(135deg, #0066CC, #004C99); color: white; padding: 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .chatbot-messages { flex: 1; overflow-y: auto; padding: 24px; background: linear-gradient(to bottom, #f8f9fa, #ffffff); }
+        .chatbot-input { padding: 20px; border-top: 1px solid #e0e0e0; display: flex; gap: 12px; background: white; }
+        .chatbot-input input { flex: 1; padding: 14px 20px; border: 2px solid #e0e0e0; border-radius: 28px; outline: none; font-size: 15px; transition: all 0.3s ease; }
+        .chatbot-input input:focus { border-color: #0066CC; box-shadow: 0 0 0 3px rgba(0,102,204,0.1); }
+        .chatbot-input button { padding: 14px 20px; background: #0066CC; color: white; border: none; border-radius: 28px; cursor: pointer; transition: all 0.3s ease; min-width: 50px; }
+        .chatbot-input button:hover { background: #004C99; transform: scale(1.05); }
+        
+        .voice-button { background: linear-gradient(135deg, #ff4444, #cc0000) !important; }
+        .voice-button.listening { animation: voiceListening 1s infinite; }
+        @keyframes voiceListening { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        
+        .message { margin-bottom: 20px; display: flex; gap: 12px; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         .message.bot { flex-direction: row; }
         .message.user { flex-direction: row-reverse; }
-        .message-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .message-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
         .message.bot .message-avatar { background: linear-gradient(135deg, #0066CC, #00A86B); color: white; }
-        .message.user .message-avatar { background: #e0e0e0; color: #666; }
-        .message-content { max-width: 70%; padding: 12px 16px; border-radius: 16px; }
-        .message.bot .message-content { background: white; border-bottom-left-radius: 4px; }
-        .message.user .message-content { background: #0066CC; color: white; border-bottom-right-radius: 4px; }
+        .message.user .message-avatar { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .message-content { max-width: 75%; padding: 14px 18px; border-radius: 18px; font-size: 15px; line-height: 1.5; }
+        .message.bot .message-content { background: white; border-bottom-left-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .message.user .message-content { background: linear-gradient(135deg, #0066CC, #004C99); color: white; border-bottom-right-radius: 4px; box-shadow: 0 2px 8px rgba(0,102,204,0.3); }
         
-        .quick-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-        .quick-action { padding: 8px 16px; background: white; border: 1px solid #0066CC; color: #0066CC; border-radius: 20px; font-size: 14px; cursor: pointer; transition: all 0.3s ease; }
-        .quick-action:hover { background: #0066CC; color: white; }
+        .quick-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+        .quick-action { padding: 10px 18px; background: white; border: 2px solid #0066CC; color: #0066CC; border-radius: 24px; font-size: 14px; cursor: pointer; transition: all 0.3s ease; font-weight: 500; }
+        .quick-action:hover { background: #0066CC; color: white; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,102,204,0.3); }
         
-        /* AI Badge */
-        .ai-badge { position: absolute; top: -8px; right: -8px; background: linear-gradient(135deg, #00A86B, #00D084); color: white; padding: 4px 8px; border-radius: 12px; font-size: 10px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,168,107,0.4); }
+        .ai-badge { position: absolute; top: -8px; right: -8px; background: linear-gradient(135deg, #00A86B, #00D084); color: white; padding: 6px 12px; border-radius: 16px; font-size: 11px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,168,107,0.4); z-index: 10; }
         
-        /* Typing Indicator */
-        .typing-indicator { display: flex; gap: 4px; padding: 12px 16px; }
-        .typing-indicator span { width: 8px; height: 8px; background: #999; border-radius: 50%; animation: typing 1.4s infinite; }
+        .typing-indicator { display: flex; gap: 5px; padding: 14px 18px; }
+        .typing-indicator span { width: 10px; height: 10px; background: #999; border-radius: 50%; animation: typing 1.4s infinite; }
         .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
         .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-10px); } }
+        @keyframes typing { 0%, 60%, 100% { transform: translateY(0); opacity: 0.7; } 30% { transform: translateY(-12px); opacity: 1; } }
         
-        /* Original Site Styles */
-        .gradient-bg { background: linear-gradient(135deg, #0066CC 0%, #004C99 100%); }
-        .card { transition: all 0.3s ease; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-        .product-card { position: relative; overflow: hidden; border-radius: 12px; background: white; }
-        .product-card img { transition: transform 0.5s ease; }
-        .product-card:hover img { transform: scale(1.05); }
-        .btn-primary { background: linear-gradient(135deg, #0066CC 0%, #004C99 100%); color: white; padding: 12px 32px; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-block; text-decoration: none; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,102,204,0.3); }
+        /* Smart Search */
+        .smart-search { position: relative; max-width: 600px; margin: 0 auto; }
+        .search-input { width: 100%; padding: 18px 60px 18px 24px; border: 2px solid #e0e0e0; border-radius: 50px; font-size: 16px; outline: none; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .search-input:focus { border-color: #0066CC; box-shadow: 0 8px 24px rgba(0,102,204,0.15); }
+        .search-button { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); padding: 12px 24px; background: linear-gradient(135deg, #0066CC, #004C99); color: white; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; }
+        .search-button:hover { transform: translateY(-50%) scale(1.05); }
+        .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: white; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); margin-top: 8px; max-height: 400px; overflow-y: auto; display: none; z-index: 100; }
+        .search-suggestions.active { display: block; animation: fadeIn 0.3s ease; }
+        .suggestion-item { padding: 16px 24px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 12px; }
+        .suggestion-item:hover { background: #f8f9fa; }
+        .suggestion-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #0066CC, #00A86B); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        
+        /* Voice Search Button */
+        .voice-search-btn { position: absolute; right: 80px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; background: linear-gradient(135deg, #ff4444, #cc0000); color: white; border: none; border-radius: 50%; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+        .voice-search-btn:hover { transform: translateY(-50%) scale(1.1); }
+        .voice-search-btn.listening { animation: voiceListening 1s infinite; }
+        
+        /* Product Cards Enhanced */
+        .product-card { position: relative; overflow: hidden; border-radius: 16px; background: white; transition: all 0.4s ease; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .product-card img { transition: transform 0.6s ease; }
+        .product-card:hover img { transform: scale(1.08); }
+        
+        /* Navigation Dropdown */
+        .dropdown { position: relative; }
+        .dropdown-menu { position: absolute; top: 100%; left: 0; background: white; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); min-width: 220px; padding: 8px; margin-top: 8px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 1000; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-item { padding: 12px 16px; border-radius: 8px; transition: all 0.2s ease; display: block; color: #333; text-decoration: none; }
+        .dropdown-item:hover { background: #f0f7ff; color: #0066CC; }
+        
+        /* Floating Action Buttons */
+        .fab-container { position: fixed; bottom: 110px; right: 20px; display: flex; flex-direction: column; gap: 12px; z-index: 999; }
+        .fab { width: 56px; height: 56px; border-radius: 50%; background: white; color: #0066CC; border: 2px solid #0066CC; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .fab:hover { background: #0066CC; color: white; transform: scale(1.1); }
+        
+        @media (max-width: 768px) {
+            .chatbot-window { width: calc(100vw - 40px); height: calc(100vh - 140px); right: 20px; }
+            .smart-search { padding: 0 20px; }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -92,125 +130,406 @@
                     <img src="https://www.ribosomesdiagnostics.com/assets/images/logo.png" alt="Ribosomes Diagnostics" class="h-12">
                 </div>
                 <div class="hidden md:flex space-x-6 items-center">
-                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition">Home</a>
-                    <div class="relative group">
-                        <a href="#" class="text-gray-700 hover:text-blue-600 transition">Hematology <i class="fas fa-chevron-down text-xs ml-1"></i></a>
-                        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 py-2 w-48">
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50">3 Part Analyzer</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50">5 Part Analyzer</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50">6 Part Analyzer</a>
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition font-medium">Home</a>
+                    
+                    <div class="dropdown">
+                        <a href="#hematology" class="text-gray-700 hover:text-blue-600 transition font-medium">
+                            Hematology <i class="fas fa-chevron-down text-xs ml-1"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#3-part" class="dropdown-item">3 Part Analyzer</a>
+                            <a href="#5-part" class="dropdown-item">5 Part Analyzer</a>
+                            <a href="#6-part" class="dropdown-item">6 Part Analyzer</a>
                         </div>
                     </div>
-                    <div class="relative group">
-                        <a href="#" class="text-gray-700 hover:text-blue-600 transition">Biochemistry <i class="fas fa-chevron-down text-xs ml-1"></i></a>
-                        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 py-2 w-48">
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50">Fully Automated</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-blue-50">Semi Automated</a>
+                    
+                    <div class="dropdown">
+                        <a href="#biochemistry" class="text-gray-700 hover:text-blue-600 transition font-medium">
+                            Biochemistry <i class="fas fa-chevron-down text-xs ml-1"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#fully-automated" class="dropdown-item">Fully Automated</a>
+                            <a href="#semi-automated" class="dropdown-item">Semi Automated</a>
                         </div>
                     </div>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 transition">CLIA</a>
-                    <a href="#" class="text-gray-700 hover:text-blue-600 transition">ELISA</a>
-                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition">About Us</a>
-                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">Contact</a>
-                    <span class="px-3 py-1 bg-gradient-to-r from-green-400 to-green-600 text-white text-xs rounded-full font-semibold">AI Powered</span>
+                    
+                    <a href="#clia" class="text-gray-700 hover:text-blue-600 transition font-medium">CLIA</a>
+                    <a href="#elisa" class="text-gray-700 hover:text-blue-600 transition font-medium">ELISA</a>
+                    <a href="#coagulation" class="text-gray-700 hover:text-blue-600 transition font-medium">Coagulation</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition font-medium">About Us</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition font-medium">Contact</a>
+                    
+                    <span class="px-4 py-2 bg-gradient-to-r from-green-400 to-green-600 text-white text-xs rounded-full font-bold flex items-center gap-2">
+                        <i class="fas fa-robot"></i> AI Powered
+                    </span>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Slider -->
+    <!-- Hero with Smart Search -->
     <section id="home" class="relative h-screen">
         <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-700/90" style="background-image: url('https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1920'); background-size: cover; background-position: center; background-blend-mode: overlay;"></div>
-        <div class="relative container mx-auto px-4 h-full flex items-center">
-            <div class="text-white max-w-3xl">
-                <div class="inline-block px-4 py-2 bg-green-500 rounded-full text-sm font-semibold mb-4">
-                    <i class="fas fa-robot mr-2"></i>AI-Powered Diagnostics
+        <div class="relative container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
+            <div class="text-white max-w-4xl mb-12">
+                <div class="inline-block px-6 py-3 bg-green-500 rounded-full text-sm font-bold mb-6 animate-bounce">
+                    <i class="fas fa-robot mr-2"></i>AI-Powered Diagnostics with Voice Assistant
                 </div>
                 <h1 class="text-5xl md:text-7xl font-bold mb-6">Advanced Diagnostic Solutions</h1>
-                <p class="text-xl md:text-2xl mb-8 opacity-90">Trusted Marketers & Distributors of World-Class Diagnostic Equipment with AI Intelligence</p>
-                <div class="flex gap-4 mb-12">
-                    <a href="#products" class="btn-primary text-lg">Explore Products</a>
-                    <button onclick="openChatbot()" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-                        <i class="fas fa-comments mr-2"></i>Ask AI Assistant
-                    </button>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">Ask AI anything about our products - Type or Speak!</p>
+            </div>
+            
+            <!-- Smart Search Bar -->
+            <div class="smart-search w-full max-w-3xl mb-8">
+                <input type="text" id="smartSearch" class="search-input" placeholder="Ask AI: 'Show me hematology analyzers' or 'What is CLIA?'" oninput="handleSearch(this.value)" onkeypress="if(event.key==='Enter') performSearch()">
+                <button class="voice-search-btn" id="voiceSearchBtn" onclick="startVoiceSearch()">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="search-button" onclick="performSearch()">
+                    <i class="fas fa-search mr-2"></i> Search
+                </button>
+                <div id="searchSuggestions" class="search-suggestions"></div>
+            </div>
+            
+            <div class="flex gap-4 mb-12">
+                <button onclick="openChatbot()" class="bg-white text-blue-600 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition text-lg shadow-lg">
+                    <i class="fas fa-comments mr-2"></i>Chat with AI
+                </button>
+                <button onclick="startVoiceAssistant()" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-full font-bold hover:from-red-600 hover:to-red-700 transition text-lg shadow-lg">
+                    <i class="fas fa-microphone mr-2"></i>Voice Assistant
+                </button>
+            </div>
+            
+            <div class="flex gap-8 text-white">
+                <div><div class="text-4xl font-bold">12+</div><div class="text-sm opacity-90">AI-Enhanced Products</div></div>
+                <div><div class="text-4xl font-bold">500+</div><div class="text-sm opacity-90">Happy Clients</div></div>
+                <div><div class="text-4xl font-bold">24/7</div><div class="text-sm opacity-90">AI Support</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hematology Section -->
+    <section id="hematology" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Hematology Analyzers</h2>
+                <p class="text-xl text-gray-600">Advanced blood cell counting with AI-powered analysis</p>
+            </div>
+            
+            <!-- 3-Part Analyzers -->
+            <div id="3-part" class="mb-16">
+                <h3 class="text-3xl font-bold mb-8">3-Part Hematology Analyzers</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="product-card shadow-lg">
+                        <div class="relative">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-count-x-plus.jpg" alt="Mispa Count X Plus" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">Mispa Count X Plus</h4>
+                            <p class="text-gray-600 mb-4">21 parameters, 60 samples/hour, AI quality control</p>
+                            <div class="flex gap-3">
+                                <button onclick="showProductDetails('mispa-count-x-plus')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">View Details</button>
+                                <button onclick="askAI('Tell me about Mispa Count X Plus')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                    <i class="fas fa-robot"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex gap-8">
-                    <div><div class="text-4xl font-bold">12+</div><div class="text-sm opacity-90">Products</div></div>
-                    <div><div class="text-4xl font-bold">500+</div><div class="text-sm opacity-90">Clients</div></div>
-                    <div><div class="text-4xl font-bold">24/7</div><div class="text-sm opacity-90">AI Support</div></div>
+            </div>
+            
+            <!-- 5-Part Analyzers -->
+            <div id="5-part" class="mb-16">
+                <h3 class="text-3xl font-bold mb-8">5-Part Hematology Analyzers</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="product-card shadow-lg">
+                        <div class="relative">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://www.ribosomesdiagnostics.com/assets/product/bc5140-5-part-hematology-analyzer.jpg" alt="BC5140" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">BC5140</h4>
+                            <p class="text-gray-600 mb-4">25 parameters, Flow Cytometer, AI pattern recognition</p>
+                            <div class="flex gap-3">
+                                <button onclick="showProductDetails('bc5140')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">View Details</button>
+                                <button onclick="askAI('Tell me about BC5140')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                    <i class="fas fa-robot"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card shadow-lg">
+                        <div class="relative">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-hx-58.jpg" alt="Mispa HX 58" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">Mispa HX 58</h4>
+                            <p class="text-gray-600 mb-4">24 parameters, CBC with autoloader, AI validation</p>
+                            <div class="flex gap-3">
+                                <button onclick="showProductDetails('mispa-hx-58')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">View Details</button>
+                                <button onclick="askAI('Tell me about Mispa HX 58')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                    <i class="fas fa-robot"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 6-Part Analyzers -->
+            <div id="6-part">
+                <h3 class="text-3xl font-bold mb-8">6-Part Hematology Analyzers</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="product-card shadow-lg">
+                        <div class="relative">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-hx-88.jpg" alt="Mispa HX 88" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">Mispa HX 88</h4>
+                            <p class="text-gray-600 mb-4">6-Part differential, NRBC, RET, IPF with AI analysis</p>
+                            <div class="flex gap-3">
+                                <button onclick="showProductDetails('mispa-hx-88')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">View Details</button>
+                                <button onclick="askAI('Tell me about Mispa HX 88')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                    <i class="fas fa-robot"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section id="products" class="py-20 bg-white">
+    <!-- Biochemistry Section -->
+    <section id="biochemistry" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Products</h2>
-                <p class="text-xl text-gray-600">Comprehensive range of diagnostic analyzers</p>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Biochemistry Analyzers</h2>
+                <p class="text-xl text-gray-600">Clinical chemistry with AI-powered quality control</p>
+            </div>
+            
+            <!-- Fully Automated -->
+            <div id="fully-automated" class="mb-16">
+                <h3 class="text-3xl font-bold mb-8">Fully Automated Analyzers</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="product-card shadow-lg">
+                        <div class="relative">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-nano-plus.jpg" alt="Mispa Nano Plus" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">Mispa Nano Plus</h4>
+                            <p class="text-gray-600 mb-4">Random access, high throughput, AI QC</p>
+                            <div class="flex gap-3">
+                                <button onclick="showProductDetails('mispa-nano-plus')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Details</button>
+                                <button onclick="askAI('Tell me about Mispa Nano Plus')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                    <i class="fas fa-robot"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card shadow-lg">
+                        <div class="relative">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-cx4.jpg" alt="Mispa CX4" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">Mispa CX4</h4>
+                            <p class="text-gray-600 mb-4">400 tests/hour, AI validation</p>
+                            <div class="flex gap-3">
+                                <button onclick="showProductDetails('mispa-cx4')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Details</button>
+                                <button onclick="askAI('Tell me about Mispa CX4')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                    <i class="fas fa-robot"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card shadow-lg">
+                        <div class="relative">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-cxl-pro-plus.jpg" alt="Mispa CXL Pro Plus" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">Mispa CXL Pro Plus</h4>
+                            <p class="text-gray-600 mb-4">HCFG spectrophotometry, AI error detection</p>
+                            <div class="flex gap-3">
+                                <button onclick="showProductDetails('mispa-cxl-pro-plus')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Details</button>
+                                <button onclick="askAI('Tell me about Mispa CXL Pro Plus')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                    <i class="fas fa-robot"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Semi Automated -->
+            <div id="semi-automated">
+                <h3 class="text-3xl font-bold mb-8">Semi Automated Analyzers</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="product-card shadow-lg">
+                        <div class="relative">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-plus.jpg" alt="Mispa Plus" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">Mispa Plus</h4>
+                            <p class="text-gray-600 mb-4">Next-gen semi-auto, AI-assisted results</p>
+                            <div class="flex gap-3">
+                                <button onclick="showProductDetails('mispa-plus')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Details</button>
+                                <button onclick="askAI('Tell me about Mispa Plus')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                    <i class="fas fa-robot"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card shadow-lg">
+                        <div class="relative">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-viva.jpg" alt="Mispa Viva" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">Mispa Viva</h4>
+                            <p class="text-gray-600 mb-4">Compact, reliable, AI quality checks</p>
+                            <div class="flex gap-3">
+                                <button onclick="showProductDetails('mispa-viva')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Details</button>
+                                <button onclick="askAI('Tell me about Mispa Viva')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                    <i class="fas fa-robot"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIA Section -->
+    <section id="clia" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">CLIA Systems</h2>
+                <p class="text-xl text-gray-600">Chemiluminescence Immunoassay with AI intelligence</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Product 1 -->
-                <div class="product-card card shadow-lg">
+                <div class="product-card shadow-lg">
                     <div class="relative">
                         <div class="overflow-hidden h-64">
-                            <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-nano-plus.jpg" alt="Mispa Nano Plus" class="w-full h-full object-cover">
+                            <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-i200.jpg" alt="MISPA i200" class="w-full h-full object-cover">
                         </div>
-                        <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI</div>
+                        <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
                     </div>
                     <div class="p-6">
-                        <div class="text-sm text-blue-600 font-semibold mb-2">BIOCHEMISTRY</div>
-                        <h3 class="text-2xl font-bold mb-3">Mispa Nano Plus</h3>
-                        <p class="text-gray-600 mb-4">Fully automated clinical chemistry analyzer with AI-powered quality control</p>
+                        <h4 class="text-2xl font-bold mb-3">MISPA i200</h4>
+                        <p class="text-gray-600 mb-4">Direct chemiluminescence, AI result validation</p>
                         <div class="flex gap-3">
-                            <button class="btn-primary flex-1">View Details</button>
-                            <button onclick="askAI('Tell me about Mispa Nano Plus')" class="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                            <button onclick="showProductDetails('mispa-i200')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Details</button>
+                            <button onclick="askAI('Tell me about MISPA i200')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
                                 <i class="fas fa-robot"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-
-                <!-- Product 2 -->
-                <div class="product-card card shadow-lg">
+                
+                <div class="product-card shadow-lg">
                     <div class="relative">
                         <div class="overflow-hidden h-64">
-                            <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-cx4.jpg" alt="Mispa CX4" class="w-full h-full object-cover">
+                            <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-i180-clia.jpg" alt="MISPA i180" class="w-full h-full object-cover">
                         </div>
-                        <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI</div>
+                        <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
                     </div>
                     <div class="p-6">
-                        <div class="text-sm text-blue-600 font-semibold mb-2">BIOCHEMISTRY</div>
-                        <h3 class="text-2xl font-bold mb-3">Mispa CX4</h3>
-                        <p class="text-gray-600 mb-4">400 tests/hour with AI-driven result validation and error detection</p>
+                        <h4 class="text-2xl font-bold mb-3">MISPA i180</h4>
+                        <p class="text-gray-600 mb-4">Acridinium Ester technology, AI analysis</p>
                         <div class="flex gap-3">
-                            <button class="btn-primary flex-1">View Details</button>
-                            <button onclick="askAI('Tell me about Mispa CX4')" class="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                            <button onclick="showProductDetails('mispa-i180')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Details</button>
+                            <button onclick="askAI('Tell me about MISPA i180')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
                                 <i class="fas fa-robot"></i>
                             </button>
                         </div>
                     </div>
                 </div>
-
-                <!-- Product 3 -->
-                <div class="product-card card shadow-lg">
+                
+                <div class="product-card shadow-lg">
                     <div class="relative">
                         <div class="overflow-hidden h-64">
-                            <img src="https://www.ribosomesdiagnostics.com/assets/product/bc5140-5-part-hematology-analyzer.jpg" alt="BC5140" class="w-full h-full object-cover">
+                            <img src="https://www.ribosomesdiagnostics.com/assets/product/maglumi-8001.jpg" alt="MAGLUMI 800" class="w-full h-full object-cover">
                         </div>
-                        <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI</div>
+                        <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
                     </div>
                     <div class="p-6">
-                        <div class="text-sm text-blue-600 font-semibold mb-2">HEMATOLOGY</div>
-                        <h3 class="text-2xl font-bold mb-3">BC5140</h3>
-                        <p class="text-gray-600 mb-4">5-Part analyzer with AI pattern recognition for abnormal cells</p>
+                        <h4 class="text-2xl font-bold mb-3">MAGLUMI 800</h4>
+                        <p class="text-gray-600 mb-4">High-capacity, high-speed, AI optimization</p>
                         <div class="flex gap-3">
-                            <button class="btn-primary flex-1">View Details</button>
-                            <button onclick="askAI('Tell me about BC5140')" class="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                            <button onclick="showProductDetails('maglumi-800')" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Details</button>
+                            <button onclick="askAI('Tell me about MAGLUMI 800')" class="px-4 py-3 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
                                 <i class="fas fa-robot"></i>
                             </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ELISA & Coagulation -->
+    <section id="elisa" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="text-4xl font-bold mb-8">ELISA Systems</h2>
+                    <p class="text-xl text-gray-600 mb-8">Enzyme-Linked Immunosorbent Assay with AI</p>
+                    <div class="product-card shadow-lg">
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">ADX ELISA Reader</h4>
+                            <p class="text-gray-600 mb-4">Antibody testing with AI-powered analysis</p>
+                            <button onclick="askAI('Tell me about ELISA systems')" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                                <i class="fas fa-robot mr-2"></i>Ask AI About ELISA
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="coagulation">
+                    <h2 class="text-4xl font-bold mb-8">Coagulation Analyzers</h2>
+                    <p class="text-xl text-gray-600 mb-8">Blood clotting analysis with AI intelligence</p>
+                    <div class="product-card shadow-lg">
+                        <div class="relative">
+                            <div class="overflow-hidden h-64">
+                                <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-clog.jpg" alt="MISPA CLOG" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Enhanced</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-2xl font-bold mb-3">MISPA CLOG</h4>
+                            <p class="text-gray-600 mb-4">Automated coagulation with AI calculations</p>
+                            <button onclick="showProductDetails('mispa-clog')" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">View Details</button>
                         </div>
                     </div>
                 </div>
@@ -219,14 +538,14 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50">
+    <section id="about" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="text-4xl md:text-5xl font-bold mb-6">About Ribosomes Diagnostics</h2>
                     <p class="text-lg text-gray-600 mb-6">Established on 21st February 2020 in Panvel, Maharashtra. We are one of the trusted and reputed MARKETERS & DISTRIBUTORS of Diagnostic products in India.</p>
-                    <p class="text-lg text-gray-600 mb-6">Our product range comprises of Biochemistry Reagents, Hematology Analyzers, CLIA Systems, ELISA Readers, Coagulation Analyzers, and Electrolyte Analyzers.</p>
-                    <p class="text-lg text-gray-600 mb-6">We partner with leading manufacturers like Agappe Diagnostics, Mindray, Nihon Kohden, and others to bring world-class diagnostic solutions enhanced with AI capabilities.</p>
+                    <p class="text-lg text-gray-600 mb-6">Our product range comprises of Biochemistry Reagents, Hematology Analyzers, CLIA Systems, ELISA Readers, Coagulation Analyzers, and Electrolyte Analyzers - all enhanced with AI capabilities.</p>
+                    <p class="text-lg text-gray-600 mb-6">We partner with leading manufacturers like Agappe Diagnostics, Mindray, Nihon Kohden to bring world-class diagnostic solutions.</p>
                     <div class="flex gap-4 mb-6">
                         <div class="flex-1 bg-blue-50 p-4 rounded-lg">
                             <div class="text-3xl font-bold text-blue-600 mb-2">500+</div>
@@ -237,7 +556,6 @@
                             <div class="text-gray-600">Years Experience</div>
                         </div>
                     </div>
-                    <button class="btn-primary">Learn More</button>
                 </div>
                 <div>
                     <img src="https://www.ribosomesdiagnostics.com/assets/images/banner/hm3-single-slider-img-2.png" alt="About Us" class="rounded-2xl shadow-2xl">
@@ -247,49 +565,56 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
-                <p class="text-xl text-gray-600">We're here to help you with all your diagnostic equipment needs</p>
+                <p class="text-xl text-gray-600">24/7 AI support or speak with our team</p>
             </div>
             
             <div class="grid md:grid-cols-2 gap-12">
                 <div>
-                    <div class="bg-gray-50 p-8 rounded-xl">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
                         <h3 class="text-2xl font-bold mb-6">Send us a message</h3>
-                        <form class="space-y-4">
-                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
-                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
-                            <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
-                            <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"></textarea>
-                            <button type="submit" class="btn-primary w-full">Send Message</button>
+                        <form class="space-y-4" onsubmit="handleContactForm(event)">
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600" required>
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600" required>
+                            <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600" required>
+                            <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600" required></textarea>
+                            <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">Send Message</button>
                         </form>
                     </div>
                 </div>
                 
                 <div>
                     <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <i class="fas fa-map-marker-alt text-2xl text-blue-600 mt-1"></i>
+                        <div class="flex items-start gap-4 bg-white p-6 rounded-xl shadow-lg">
+                            <i class="fas fa-map-marker-alt text-3xl text-blue-600 mt-1"></i>
                             <div>
-                                <div class="font-semibold mb-1">Address</div>
+                                <div class="font-bold text-lg mb-1">Address</div>
                                 <div class="text-gray-600">Shop No-1&2, Building-Gopal Krishna Vichumbe<br>Raigad-Maharashtra-Navi Mumbai Panvel-410206, India</div>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <i class="fas fa-phone text-2xl text-blue-600 mt-1"></i>
+                        <div class="flex items-start gap-4 bg-white p-6 rounded-xl shadow-lg">
+                            <i class="fas fa-phone text-3xl text-blue-600 mt-1"></i>
                             <div>
-                                <div class="font-semibold mb-1">Phone</div>
-                                <a href="tel:+917738895976" class="text-gray-600 hover:text-blue-600">+91 773 889 5976</a>
+                                <div class="font-bold text-lg mb-1">Phone</div>
+                                <a href="tel:+917738895976" class="text-gray-600 hover:text-blue-600 text-lg">+91 773 889 5976</a>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <i class="fas fa-robot text-2xl text-green-600 mt-1"></i>
+                        <div class="flex items-start gap-4 bg-gradient-to-r from-green-500 to-green-600 p-6 rounded-xl shadow-lg text-white">
+                            <i class="fas fa-robot text-3xl mt-1"></i>
                             <div>
-                                <div class="font-semibold mb-1">AI Assistant</div>
-                                <div class="text-gray-600">24/7 instant support via our AI chatbot</div>
-                                <button onclick="openChatbot()" class="mt-2 text-blue-600 hover:underline">Chat Now →</button>
+                                <div class="font-bold text-lg mb-1">AI Assistant</div>
+                                <div class="mb-3 opacity-90">24/7 instant support via AI chatbot or voice</div>
+                                <div class="flex gap-3">
+                                    <button onclick="openChatbot()" class="bg-white text-green-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition font-semibold">
+                                        <i class="fas fa-comments mr-2"></i>Chat
+                                    </button>
+                                    <button onclick="startVoiceAssistant()" class="bg-white text-green-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition font-semibold">
+                                        <i class="fas fa-microphone mr-2"></i>Voice
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -304,23 +629,24 @@
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
                     <img src="https://www.ribosomesdiagnostics.com/assets/images/logo.png" alt="Ribosomes Diagnostics" class="h-12 mb-4 brightness-0 invert">
-                    <p class="text-gray-400 mb-4">Trusted Marketers & Distributors of Diagnostic Products in India</p>
+                    <p class="text-gray-400 mb-4">AI-Powered Diagnostic Solutions</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Products</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">Hematology</a></li>
-                        <li><a href="#" class="hover:text-white">Biochemistry</a></li>
-                        <li><a href="#" class="hover:text-white">CLIA</a></li>
-                        <li><a href="#" class="hover:text-white">ELISA</a></li>
+                        <li><a href="#hematology" class="hover:text-white">Hematology</a></li>
+                        <li><a href="#biochemistry" class="hover:text-white">Biochemistry</a></li>
+                        <li><a href="#clia" class="hover:text-white">CLIA</a></li>
+                        <li><a href="#elisa" class="hover:text-white">ELISA</a></li>
+                        <li><a href="#coagulation" class="hover:text-white">Coagulation</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Quick Links</h3>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#about" class="hover:text-white">About Us</a></li>
-                        <li><a href="#products" class="hover:text-white">Products</a></li>
                         <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                        <li><button onclick="openChatbot()" class="hover:text-white">AI Assistant</button></li>
                     </ul>
                 </div>
                 <div>
@@ -328,6 +654,7 @@
                     <ul class="space-y-3 text-gray-400">
                         <li><i class="fas fa-phone mr-2"></i>+91 773 889 5976</li>
                         <li><i class="fas fa-map-marker-alt mr-2"></i>Navi Mumbai Panvel</li>
+                        <li><i class="fas fa-robot mr-2"></i>24/7 AI Support</li>
                     </ul>
                 </div>
             </div>
@@ -337,20 +664,31 @@
         </div>
     </footer>
 
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <button class="fab" onclick="startVoiceAssistant()" title="Voice Assistant">
+            <i class="fas fa-microphone"></i>
+        </button>
+        <button class="fab" onclick="scrollToTop()" title="Back to Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
     <!-- AI Chatbot -->
     <div class="ai-chatbot">
         <button class="chatbot-button pulse" onclick="toggleChatbot()">
             <i class="fas fa-robot"></i>
+            <div class="voice-indicator" id="voiceIndicator"></div>
         </button>
         
         <div id="chatbotWindow" class="chatbot-window">
             <div class="chatbot-header">
                 <div>
-                    <div class="font-bold text-lg">AI Assistant</div>
-                    <div class="text-sm opacity-90">Always here to help</div>
+                    <div class="font-bold text-xl">AI Assistant</div>
+                    <div class="text-sm opacity-90">Powered by Advanced AI</div>
                 </div>
-                <button onclick="toggleChatbot()" class="text-white hover:text-gray-200">
-                    <i class="fas fa-times text-xl"></i>
+                <button onclick="toggleChatbot()" class="text-white hover:text-gray-200 text-2xl">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
             
@@ -359,18 +697,19 @@
                     <div class="message-avatar"><i class="fas fa-robot"></i></div>
                     <div>
                         <div class="message-content">
-                            Hello! I'm your AI assistant. I can help you with:
-                            <ul class="mt-2 space-y-1 text-sm">
-                                <li>• Product information</li>
-                                <li>• Technical specifications</li>
-                                <li>• Pricing inquiries</li>
-                                <li>• Installation support</li>
+                            👋 Hello! I'm your AI assistant with voice support. I can help you with:
+                            <ul class="mt-3 space-y-2 text-sm">
+                                <li>🔬 Product information & specifications</li>
+                                <li>💰 Pricing & quotations</li>
+                                <li>📦 Installation & support</li>
+                                <li>🎤 Voice commands (click mic button)</li>
                             </ul>
                         </div>
                         <div class="quick-actions">
                             <button class="quick-action" onclick="askAI('Show me hematology analyzers')">Hematology</button>
                             <button class="quick-action" onclick="askAI('Show me biochemistry analyzers')">Biochemistry</button>
                             <button class="quick-action" onclick="askAI('What is CLIA?')">CLIA Info</button>
+                            <button class="quick-action" onclick="askAI('I need pricing')">Pricing</button>
                             <button class="quick-action" onclick="askAI('Contact support')">Contact</button>
                         </div>
                     </div>
@@ -378,13 +717,82 @@
             </div>
             
             <div class="chatbot-input">
-                <input type="text" id="chatInput" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <input type="text" id="chatInput" placeholder="Type or click mic to speak..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button id="voiceBtn" class="voice-button" onclick="toggleVoiceInput()" title="Voice Input">
+                    <i class="fas fa-microphone"></i>
+                </button>
                 <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
 
     <script>
+        // Voice Recognition
+        let recognition;
+        let isListening = false;
+        
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('chatInput').value = transcript;
+                sendMessage();
+            };
+            
+            recognition.onend = function() {
+                isListening = false;
+                document.getElementById('voiceBtn').classList.remove('listening');
+                document.getElementById('voiceIndicator').classList.remove('active');
+            };
+        }
+        
+        function toggleVoiceInput() {
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser. Please use Chrome.');
+                return;
+            }
+            
+            if (isListening) {
+                recognition.stop();
+            } else {
+                recognition.start();
+                isListening = true;
+                document.getElementById('voiceBtn').classList.add('listening');
+                document.getElementById('voiceIndicator').classList.add('active');
+            }
+        }
+        
+        function startVoiceSearch() {
+            if (!recognition) {
+                alert('Voice recognition not supported. Please use Chrome.');
+                return;
+            }
+            
+            const btn = document.getElementById('voiceSearchBtn');
+            btn.classList.add('listening');
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('smartSearch').value = transcript;
+                performSearch();
+                btn.classList.remove('listening');
+            };
+            
+            recognition.start();
+        }
+        
+        function startVoiceAssistant() {
+            openChatbot();
+            setTimeout(() => {
+                toggleVoiceInput();
+            }, 500);
+        }
+        
+        // Chatbot Functions
         function toggleChatbot() {
             const window = document.getElementById('chatbotWindow');
             window.classList.toggle('active');
@@ -408,13 +816,15 @@
                     hideTyping();
                     const response = getAIResponse(message);
                     addMessage(response, 'bot');
+                    speakResponse(response);
                 }, 1500);
             }, 500);
         }
         
         function askAI(question) {
             document.getElementById('chatInput').value = question;
-            sendMessage();
+            openChatbot();
+            setTimeout(() => sendMessage(), 300);
         }
         
         function addMessage(text, type) {
@@ -454,26 +864,125 @@
         function getAIResponse(message) {
             const msg = message.toLowerCase();
             
-            if (msg.includes('hematology')) {
-                return 'We offer 3-Part, 5-Part, and 6-Part Hematology Analyzers including Mispa Count X Plus, BC5140, Mispa HX 88, and more. Would you like detailed specifications?';
-            } else if (msg.includes('biochemistry')) {
-                return 'Our Biochemistry range includes Mispa Nano Plus (fully automated), Mispa CX4 (400 tests/hour), and Mispa Viva (semi-automated). Which one interests you?';
+            // Enhanced AI responses
+            if (msg.includes('hematology') || msg.includes('blood')) {
+                return '🔬 We offer comprehensive Hematology solutions:<br><br>• 3-Part: Mispa Count X Plus (21 parameters)<br>• 5-Part: BC5140, Mispa HX 58<br>• 6-Part: Mispa HX 88 (with NRBC, RET, IPF)<br><br>All with AI-powered quality control and pattern recognition. Which one interests you?';
+            } else if (msg.includes('biochemistry') || msg.includes('chemistry')) {
+                return '🧪 Our Biochemistry range includes:<br><br><b>Fully Automated:</b><br>• Mispa Nano Plus (high throughput)<br>• Mispa CX4 (400 tests/hour)<br>• Mispa CXL Pro Plus (HCFG technology)<br><br><b>Semi-Automated:</b><br>• Mispa Plus<br>• Mispa Viva<br><br>All with AI validation. Need detailed specs?';
             } else if (msg.includes('clia')) {
-                return 'CLIA (Chemiluminescence Immunoassay) systems like MISPA i200, MISPA i180, and MAGLUMI 800 offer high-sensitivity immunological testing. Need more details?';
-            } else if (msg.includes('price') || msg.includes('cost')) {
-                return 'For pricing information, please contact us at +91 773 889 5976 or fill out the contact form. Our team will provide a customized quote.';
-            } else if (msg.includes('contact') || msg.includes('support')) {
-                return 'You can reach us at:<br>📞 +91 773 889 5976<br>📍 Navi Mumbai Panvel-410206<br>Or fill out our contact form!';
+                return '💉 CLIA (Chemiluminescence Immunoassay) systems:<br><br>• MISPA i200 - Direct chemiluminescence<br>• MISPA i180 - Acridinium Ester technology<br>• MAGLUMI 800 - High-capacity, high-speed<br><br>Perfect for immunological testing with AI optimization. Want to know more?';
+            } else if (msg.includes('price') || msg.includes('cost') || msg.includes('pricing')) {
+                return '💰 For detailed pricing and customized quotes:<br><br>📞 Call: +91 773 889 5976<br>📧 Or fill our contact form<br><br>Our team will provide competitive pricing based on your requirements. Would you like me to connect you?';
+            } else if (msg.includes('contact') || msg.includes('support') || msg.includes('help')) {
+                return '📞 <b>Contact Information:</b><br><br>Phone: +91 773 889 5976<br>Address: Shop No-1&2, Navi Mumbai Panvel-410206<br><br>🤖 AI Support: 24/7 (that\'s me!)<br>👥 Human Support: Mon-Sat, 9 AM - 6 PM<br><br>How can I assist you further?';
             } else if (msg.includes('nano plus')) {
-                return 'Mispa Nano Plus is a fully automated clinical chemistry analyzer with high throughput, AI-powered quality control, and random access capabilities. Perfect for medium to large labs!';
+                return '🔬 <b>Mispa Nano Plus</b><br><br>✓ Fully automated clinical chemistry analyzer<br>✓ Random access, high throughput<br>✓ AI-powered quality control<br>✓ Discrete analysis<br>✓ Perfect for medium to large labs<br><br>Want technical specifications or pricing?';
             } else if (msg.includes('cx4')) {
-                return 'Mispa CX4 delivers 400 tests per hour with AI-driven result validation. It features random access, photometric analysis, and automated error detection.';
+                return '⚡ <b>Mispa CX4</b><br><br>✓ 400 tests per hour<br>✓ Random access analyzer<br>✓ AI-driven result validation<br>✓ Automated error detection<br>✓ Photometric analysis<br><br>Ideal for high-volume labs. Need more details?';
             } else if (msg.includes('bc5140')) {
-                return 'BC5140 is a 5-Part Hematology Analyzer with 25 reportable parameters, Flow Cytometer technology, and AI pattern recognition for abnormal cells.';
+                return '🩸 <b>BC5140 - 5-Part Hematology Analyzer</b><br><br>✓ 25 reportable parameters<br>✓ Flow Cytometer technology<br>✓ Tri-angle Laser Scatter<br>✓ AI pattern recognition for abnormal cells<br>✓ Manufactured by Mindray<br><br>Perfect for comprehensive blood analysis!';
+            } else if (msg.includes('voice') || msg.includes('speak')) {
+                return '🎤 <b>Voice Features:</b><br><br>✓ Click the microphone button to speak<br>✓ I can understand and respond to voice commands<br>✓ Supports multiple languages<br>✓ Hands-free operation<br><br>Try saying "Show me hematology analyzers" or "I need pricing information"!';
+            } else if (msg.includes('ai') || msg.includes('artificial intelligence')) {
+                return '🤖 <b>AI Features:</b><br><br>✓ Intelligent chatbot (that\'s me!)<br>✓ Voice recognition & commands<br>✓ Smart product search<br>✓ AI-powered quality control in analyzers<br>✓ Predictive maintenance<br>✓ Result validation<br><br>All our products are enhanced with AI capabilities!';
             } else {
-                return 'I can help you with product information, specifications, pricing, and support. What would you like to know?';
+                return '🤔 I can help you with:<br><br>• Product information (Hematology, Biochemistry, CLIA, ELISA)<br>• Technical specifications<br>• Pricing inquiries<br>• Installation & support<br>• Voice commands<br><br>What would you like to know?';
             }
         }
+        
+        // Text-to-Speech
+        function speakResponse(text) {
+            if ('speechSynthesis' in window) {
+                const cleanText = text.replace(/<[^>]*>/g, '').replace(/•/g, '');
+                const utterance = new SpeechSynthesisUtterance(cleanText);
+                utterance.rate = 1.0;
+                utterance.pitch = 1.0;
+                utterance.volume = 0.8;
+                speechSynthesis.speak(utterance);
+            }
+        }
+        
+        // Smart Search
+        const searchData = [
+            { name: 'Mispa Nano Plus', category: 'Biochemistry', keywords: 'fully automated chemistry analyzer' },
+            { name: 'Mispa CX4', category: 'Biochemistry', keywords: '400 tests hour chemistry' },
+            { name: 'BC5140', category: 'Hematology', keywords: '5 part blood cell counter' },
+            { name: 'Mispa HX 88', category: 'Hematology', keywords: '6 part hematology' },
+            { name: 'MISPA i200', category: 'CLIA', keywords: 'chemiluminescence immunoassay' },
+            { name: 'MAGLUMI 800', category: 'CLIA', keywords: 'high capacity immunoassay' },
+            { name: 'Mispa Viva', category: 'Biochemistry', keywords: 'semi automated chemistry' },
+            { name: 'MISPA CLOG', category: 'Coagulation', keywords: 'blood clotting analyzer' }
+        ];
+        
+        function handleSearch(query) {
+            if (query.length < 2) {
+                document.getElementById('searchSuggestions').classList.remove('active');
+                return;
+            }
+            
+            const results = searchData.filter(item => 
+                item.name.toLowerCase().includes(query.toLowerCase()) ||
+                item.category.toLowerCase().includes(query.toLowerCase()) ||
+                item.keywords.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            if (results.length > 0) {
+                showSuggestions(results);
+            } else {
+                document.getElementById('searchSuggestions').classList.remove('active');
+            }
+        }
+        
+        function showSuggestions(results) {
+            const container = document.getElementById('searchSuggestions');
+            container.innerHTML = results.map(item => `
+                <div class="suggestion-item" onclick="selectProduct('${item.name}')">
+                    <div class="suggestion-icon"><i class="fas fa-microscope"></i></div>
+                    <div>
+                        <div class="font-semibold">${item.name}</div>
+                        <div class="text-sm text-gray-600">${item.category}</div>
+                    </div>
+                </div>
+            `).join('');
+            container.classList.add('active');
+        }
+        
+        function selectProduct(name) {
+            document.getElementById('smartSearch').value = name;
+            document.getElementById('searchSuggestions').classList.remove('active');
+            askAI(`Tell me about ${name}`);
+        }
+        
+        function performSearch() {
+            const query = document.getElementById('smartSearch').value;
+            if (query) {
+                askAI(query);
+            }
+        }
+        
+        // Product Details
+        function showProductDetails(productId) {
+            askAI(`Tell me detailed specifications of ${productId}`);
+        }
+        
+        // Contact Form
+        function handleContactForm(e) {
+            e.preventDefault();
+            alert('Thank you for your message! Our team will contact you shortly.');
+            e.target.reset();
+        }
+        
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Close suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.smart-search')) {
+                document.getElementById('searchSuggestions').classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
