@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ribosomes Diagnostics | Advanced Diagnostic Solutions with AI</title>
+    <meta name="description" content="Trusted Marketers & Distributors of Diagnostic Products in India with AI-Powered Features">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://www.ribosomesdiagnostics.com/assets/images/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; }
+        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; }
+        
+        /* AI Chatbot Styles */
+        .ai-chatbot { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+        .chatbot-button { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #0066CC, #00A86B); color: white; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,102,204,0.4); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .chatbot-button:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,102,204,0.6); }
+        .chatbot-button.pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 4px 12px rgba(0,102,204,0.4); } 50% { box-shadow: 0 4px 20px rgba(0,102,204,0.8); } }
+        
+        .chatbot-window { position: fixed; bottom: 90px; right: 20px; width: 380px; height: 600px; background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; }
+        .chatbot-window.active { display: flex; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .chatbot-header { background: linear-gradient(135deg, #0066CC, #004C99); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .chatbot-messages { flex: 1; overflow-y: auto; padding: 20px; background: #f8f9fa; }
+        .chatbot-input { padding: 15px; border-top: 1px solid #e0e0e0; display: flex; gap: 10px; background: white; }
+        .chatbot-input input { flex: 1; padding: 12px; border: 1px solid #e0e0e0; border-radius: 24px; outline: none; }
+        .chatbot-input button { padding: 12px 20px; background: #0066CC; color: white; border: none; border-radius: 24px; cursor: pointer; }
+        
+        .message { margin-bottom: 15px; display: flex; gap: 10px; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .message.bot { flex-direction: row; }
+        .message.user { flex-direction: row-reverse; }
+        .message-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .message.bot .message-avatar { background: linear-gradient(135deg, #0066CC, #00A86B); color: white; }
+        .message.user .message-avatar { background: #e0e0e0; color: #666; }
+        .message-content { max-width: 70%; padding: 12px 16px; border-radius: 16px; }
+        .message.bot .message-content { background: white; border-bottom-left-radius: 4px; }
+        .message.user .message-content { background: #0066CC; color: white; border-bottom-right-radius: 4px; }
+        
+        .quick-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+        .quick-action { padding: 8px 16px; background: white; border: 1px solid #0066CC; color: #0066CC; border-radius: 20px; font-size: 14px; cursor: pointer; transition: all 0.3s ease; }
+        .quick-action:hover { background: #0066CC; color: white; }
+        
+        /* AI Badge */
+        .ai-badge { position: absolute; top: -8px; right: -8px; background: linear-gradient(135deg, #00A86B, #00D084); color: white; padding: 4px 8px; border-radius: 12px; font-size: 10px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,168,107,0.4); }
+        
+        /* Typing Indicator */
+        .typing-indicator { display: flex; gap: 4px; padding: 12px 16px; }
+        .typing-indicator span { width: 8px; height: 8px; background: #999; border-radius: 50%; animation: typing 1.4s infinite; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-10px); } }
+        
+        /* Original Site Styles */
+        .gradient-bg { background: linear-gradient(135deg, #0066CC 0%, #004C99 100%); }
+        .card { transition: all 0.3s ease; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .product-card { position: relative; overflow: hidden; border-radius: 12px; background: white; }
+        .product-card img { transition: transform 0.5s ease; }
+        .product-card:hover img { transform: scale(1.05); }
+        .btn-primary { background: linear-gradient(135deg, #0066CC 0%, #004C99 100%); color: white; padding: 12px 32px; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-block; text-decoration: none; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,102,204,0.3); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Bar -->
+    <div class="bg-gray-900 text-white py-2 text-sm">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="tel:+917738895976" class="hover:text-blue-400"><i class="fas fa-phone mr-2"></i>+91 773 889 5976</a>
+                <span class="hidden md:inline">Shop No-1&2, Navi Mumbai Panvel-410206</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="https://www.facebook.com/" target="_blank" class="hover:text-blue-400"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com/" target="_blank" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                <a href="https://in.linkedin.com/" target="_blank" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" class="hover:text-blue-400"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <img src="https://www.ribosomesdiagnostics.com/assets/images/logo.png" alt="Ribosomes Diagnostics" class="h-12">
+                </div>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition">Home</a>
+                    <div class="relative group">
+                        <a href="#" class="text-gray-700 hover:text-blue-600 transition">Hematology <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 py-2 w-48">
+                            <a href="#" class="block px-4 py-2 hover:bg-blue-50">3 Part Analyzer</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-blue-50">5 Part Analyzer</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-blue-50">6 Part Analyzer</a>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <a href="#" class="text-gray-700 hover:text-blue-600 transition">Biochemistry <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <div class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 py-2 w-48">
+                            <a href="#" class="block px-4 py-2 hover:bg-blue-50">Fully Automated</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-blue-50">Semi Automated</a>
+                        </div>
+                    </div>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition">CLIA</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 transition">ELISA</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition">About Us</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">Contact</a>
+                    <span class="px-3 py-1 bg-gradient-to-r from-green-400 to-green-600 text-white text-xs rounded-full font-semibold">AI Powered</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <section id="home" class="relative h-screen">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-700/90" style="background-image: url('https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1920'); background-size: cover; background-position: center; background-blend-mode: overlay;"></div>
+        <div class="relative container mx-auto px-4 h-full flex items-center">
+            <div class="text-white max-w-3xl">
+                <div class="inline-block px-4 py-2 bg-green-500 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-robot mr-2"></i>AI-Powered Diagnostics
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">Advanced Diagnostic Solutions</h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">Trusted Marketers & Distributors of World-Class Diagnostic Equipment with AI Intelligence</p>
+                <div class="flex gap-4 mb-12">
+                    <a href="#products" class="btn-primary text-lg">Explore Products</a>
+                    <button onclick="openChatbot()" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                        <i class="fas fa-comments mr-2"></i>Ask AI Assistant
+                    </button>
+                </div>
+                <div class="flex gap-8">
+                    <div><div class="text-4xl font-bold">12+</div><div class="text-sm opacity-90">Products</div></div>
+                    <div><div class="text-4xl font-bold">500+</div><div class="text-sm opacity-90">Clients</div></div>
+                    <div><div class="text-4xl font-bold">24/7</div><div class="text-sm opacity-90">AI Support</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Products</h2>
+                <p class="text-xl text-gray-600">Comprehensive range of diagnostic analyzers</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card card shadow-lg">
+                    <div class="relative">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-nano-plus.jpg" alt="Mispa Nano Plus" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-blue-600 font-semibold mb-2">BIOCHEMISTRY</div>
+                        <h3 class="text-2xl font-bold mb-3">Mispa Nano Plus</h3>
+                        <p class="text-gray-600 mb-4">Fully automated clinical chemistry analyzer with AI-powered quality control</p>
+                        <div class="flex gap-3">
+                            <button class="btn-primary flex-1">View Details</button>
+                            <button onclick="askAI('Tell me about Mispa Nano Plus')" class="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                <i class="fas fa-robot"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card card shadow-lg">
+                    <div class="relative">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://www.ribosomesdiagnostics.com/assets/product/mispa-cx4.jpg" alt="Mispa CX4" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-blue-600 font-semibold mb-2">BIOCHEMISTRY</div>
+                        <h3 class="text-2xl font-bold mb-3">Mispa CX4</h3>
+                        <p class="text-gray-600 mb-4">400 tests/hour with AI-driven result validation and error detection</p>
+                        <div class="flex gap-3">
+                            <button class="btn-primary flex-1">View Details</button>
+                            <button onclick="askAI('Tell me about Mispa CX4')" class="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                <i class="fas fa-robot"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card card shadow-lg">
+                    <div class="relative">
+                        <div class="overflow-hidden h-64">
+                            <img src="https://www.ribosomesdiagnostics.com/assets/product/bc5140-5-part-hematology-analyzer.jpg" alt="BC5140" class="w-full h-full object-cover">
+                        </div>
+                        <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-sm text-blue-600 font-semibold mb-2">HEMATOLOGY</div>
+                        <h3 class="text-2xl font-bold mb-3">BC5140</h3>
+                        <p class="text-gray-600 mb-4">5-Part analyzer with AI pattern recognition for abnormal cells</p>
+                        <div class="flex gap-3">
+                            <button class="btn-primary flex-1">View Details</button>
+                            <button onclick="askAI('Tell me about BC5140')" class="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition">
+                                <i class="fas fa-robot"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">About Ribosomes Diagnostics</h2>
+                    <p class="text-lg text-gray-600 mb-6">Established on 21st February 2020 in Panvel, Maharashtra. We are one of the trusted and reputed MARKETERS & DISTRIBUTORS of Diagnostic products in India.</p>
+                    <p class="text-lg text-gray-600 mb-6">Our product range comprises of Biochemistry Reagents, Hematology Analyzers, CLIA Systems, ELISA Readers, Coagulation Analyzers, and Electrolyte Analyzers.</p>
+                    <p class="text-lg text-gray-600 mb-6">We partner with leading manufacturers like Agappe Diagnostics, Mindray, Nihon Kohden, and others to bring world-class diagnostic solutions enhanced with AI capabilities.</p>
+                    <div class="flex gap-4 mb-6">
+                        <div class="flex-1 bg-blue-50 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-blue-600 mb-2">500+</div>
+                            <div class="text-gray-600">Healthcare Partners</div>
+                        </div>
+                        <div class="flex-1 bg-green-50 p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-green-600 mb-2">12+</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                    </div>
+                    <button class="btn-primary">Learn More</button>
+                </div>
+                <div>
+                    <img src="https://www.ribosomesdiagnostics.com/assets/images/banner/hm3-single-slider-img-2.png" alt="About Us" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
+                <p class="text-xl text-gray-600">We're here to help you with all your diagnostic equipment needs</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <div class="bg-gray-50 p-8 rounded-xl">
+                        <h3 class="text-2xl font-bold mb-6">Send us a message</h3>
+                        <form class="space-y-4">
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
+                            <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600">
+                            <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600"></textarea>
+                            <button type="submit" class="btn-primary w-full">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-map-marker-alt text-2xl text-blue-600 mt-1"></i>
+                            <div>
+                                <div class="font-semibold mb-1">Address</div>
+                                <div class="text-gray-600">Shop No-1&2, Building-Gopal Krishna Vichumbe<br>Raigad-Maharashtra-Navi Mumbai Panvel-410206, India</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-phone text-2xl text-blue-600 mt-1"></i>
+                            <div>
+                                <div class="font-semibold mb-1">Phone</div>
+                                <a href="tel:+917738895976" class="text-gray-600 hover:text-blue-600">+91 773 889 5976</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-robot text-2xl text-green-600 mt-1"></i>
+                            <div>
+                                <div class="font-semibold mb-1">AI Assistant</div>
+                                <div class="text-gray-600">24/7 instant support via our AI chatbot</div>
+                                <button onclick="openChatbot()" class="mt-2 text-blue-600 hover:underline">Chat Now →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <img src="https://www.ribosomesdiagnostics.com/assets/images/logo.png" alt="Ribosomes Diagnostics" class="h-12 mb-4 brightness-0 invert">
+                    <p class="text-gray-400 mb-4">Trusted Marketers & Distributors of Diagnostic Products in India</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Products</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Hematology</a></li>
+                        <li><a href="#" class="hover:text-white">Biochemistry</a></li>
+                        <li><a href="#" class="hover:text-white">CLIA</a></li>
+                        <li><a href="#" class="hover:text-white">ELISA</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#about" class="hover:text-white">About Us</a></li>
+                        <li><a href="#products" class="hover:text-white">Products</a></li>
+                        <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><i class="fas fa-phone mr-2"></i>+91 773 889 5976</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Navi Mumbai Panvel</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Ribosomes Diagnostics. All rights reserved. Enhanced with AI.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div class="ai-chatbot">
+        <button class="chatbot-button pulse" onclick="toggleChatbot()">
+            <i class="fas fa-robot"></i>
+        </button>
+        
+        <div id="chatbotWindow" class="chatbot-window">
+            <div class="chatbot-header">
+                <div>
+                    <div class="font-bold text-lg">AI Assistant</div>
+                    <div class="text-sm opacity-90">Always here to help</div>
+                </div>
+                <button onclick="toggleChatbot()" class="text-white hover:text-gray-200">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="chatMessages" class="chatbot-messages">
+                <div class="message bot">
+                    <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <div class="message-content">
+                            Hello! I'm your AI assistant. I can help you with:
+                            <ul class="mt-2 space-y-1 text-sm">
+                                <li>• Product information</li>
+                                <li>• Technical specifications</li>
+                                <li>• Pricing inquiries</li>
+                                <li>• Installation support</li>
+                            </ul>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="quick-action" onclick="askAI('Show me hematology analyzers')">Hematology</button>
+                            <button class="quick-action" onclick="askAI('Show me biochemistry analyzers')">Biochemistry</button>
+                            <button class="quick-action" onclick="askAI('What is CLIA?')">CLIA Info</button>
+                            <button class="quick-action" onclick="askAI('Contact support')">Contact</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleChatbot() {
+            const window = document.getElementById('chatbotWindow');
+            window.classList.toggle('active');
+        }
+        
+        function openChatbot() {
+            document.getElementById('chatbotWindow').classList.add('active');
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            addMessage(message, 'user');
+            input.value = '';
+            
+            setTimeout(() => {
+                showTyping();
+                setTimeout(() => {
+                    hideTyping();
+                    const response = getAIResponse(message);
+                    addMessage(response, 'bot');
+                }, 1500);
+            }, 500);
+        }
+        
+        function askAI(question) {
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+        
+        function addMessage(text, type) {
+            const messages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `
+                <div class="message-avatar">
+                    <i class="fas fa-${type === 'bot' ? 'robot' : 'user'}"></i>
+                </div>
+                <div class="message-content">${text}</div>
+            `;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        
+        function showTyping() {
+            const messages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typing';
+            typingDiv.className = 'message bot';
+            typingDiv.innerHTML = `
+                <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                <div class="message-content typing-indicator">
+                    <span></span><span></span><span></span>
+                </div>
+            `;
+            messages.appendChild(typingDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+        
+        function hideTyping() {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        }
+        
+        function getAIResponse(message) {
+            const msg = message.toLowerCase();
+            
+            if (msg.includes('hematology')) {
+                return 'We offer 3-Part, 5-Part, and 6-Part Hematology Analyzers including Mispa Count X Plus, BC5140, Mispa HX 88, and more. Would you like detailed specifications?';
+            } else if (msg.includes('biochemistry')) {
+                return 'Our Biochemistry range includes Mispa Nano Plus (fully automated), Mispa CX4 (400 tests/hour), and Mispa Viva (semi-automated). Which one interests you?';
+            } else if (msg.includes('clia')) {
+                return 'CLIA (Chemiluminescence Immunoassay) systems like MISPA i200, MISPA i180, and MAGLUMI 800 offer high-sensitivity immunological testing. Need more details?';
+            } else if (msg.includes('price') || msg.includes('cost')) {
+                return 'For pricing information, please contact us at +91 773 889 5976 or fill out the contact form. Our team will provide a customized quote.';
+            } else if (msg.includes('contact') || msg.includes('support')) {
+                return 'You can reach us at:<br>📞 +91 773 889 5976<br>📍 Navi Mumbai Panvel-410206<br>Or fill out our contact form!';
+            } else if (msg.includes('nano plus')) {
+                return 'Mispa Nano Plus is a fully automated clinical chemistry analyzer with high throughput, AI-powered quality control, and random access capabilities. Perfect for medium to large labs!';
+            } else if (msg.includes('cx4')) {
+                return 'Mispa CX4 delivers 400 tests per hour with AI-driven result validation. It features random access, photometric analysis, and automated error detection.';
+            } else if (msg.includes('bc5140')) {
+                return 'BC5140 is a 5-Part Hematology Analyzer with 25 reportable parameters, Flow Cytometer technology, and AI pattern recognition for abnormal cells.';
+            } else {
+                return 'I can help you with product information, specifications, pricing, and support. What would you like to know?';
+            }
+        }
+    </script>
+</body>
+</html>
